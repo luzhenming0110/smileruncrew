@@ -7,11 +7,13 @@
     <style>
         /* 整體風格設定 */
         :root {
-            --primary-blue: #3054F1; /* 源自 Logo 的藍色 */
-            --action-orange: #FF6600; /* 象徵活力的橘色 */
+            --primary-blue: #3054F1; /* 藍色 */
+            --action-orange: #FF6600; /* 橘色 */
             --bg-white: #FFFFFF;
             --text-dark: #333333;
             --text-light: #666666;
+            --border-color: #ddd;
+            --shadow-color: rgba(0,0,0,0.1);
         }
 
         body {
@@ -20,6 +22,9 @@
             color: var(--text-dark);
             line-height: 1.6;
             background-color: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* 導航列 */
@@ -29,7 +34,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
             position: fixed;
             width: 100%;
             top: 0;
@@ -42,12 +47,17 @@
             font-weight: bold;
         }
 
-       .nav-links a {
-    color: var(--text-dark);
-    text-decoration: none;
-    margin-left: 30px;
-    font-weight: 500;
-}
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--action-orange);
+        }
 
         /* 品牌首頁 (Hero Section) */
         .hero {
@@ -56,18 +66,23 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* 請在此處替換你的團體照 URL */
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cover1.jpg') no-repeat center center/cover;
             color: var(--bg-white);
-            padding-top: 80px; /* offset for fixed nav */
+            padding-top: 80px;
         }
 
         .hero-content {
             max-width: 800px;
         }
 
-        .<h1>跑出你的微笑曲線</h1>
-<h2>Smile Run Crew | Mao Mao 教練陪你找回跑步的快樂</h2>
+        h1 {
+            font-size: 2.5em;
+            margin: 0.5em 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 1.5em;
         }
 
         .cta-button {
@@ -78,6 +93,7 @@
             font-weight: bold;
             border-radius: 5px;
             transition: background 0.3s ease;
+            display: inline-block;
         }
 
         .cta-button:hover {
@@ -88,6 +104,9 @@
         .coach-column {
             padding: 100px 10%;
             background-color: #fdfdfd;
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: 0 1px 15px var(--shadow-color);
         }
 
         .coach-header {
@@ -107,23 +126,23 @@
         }
 
         .coach-photo-area {
-    flex: 1;
-    height: 400px; /* 圖片高度 */
-    /* 這裡填入你的照片在 GitHub 的路徑 */
-    background: url('SmileRun Logo-02.jpg') no-repeat center center;
-    background-size: cover; /* 讓圖片完整填滿區塊 */
-    border-radius: 10px; /* 圓角 */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* 陰影 */
+            flex: 1;
+            height: 400px;
+            background: url('SmileRun Logo-02.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
 
         .article-list {
             flex: 1.5;
         }
 
+        /* 文章項目 */
         .article-item {
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .article-item a {
@@ -143,6 +162,7 @@
         .gallery {
             padding: 100px 10%;
             text-align: center;
+            max-width: 1200px;
         }
 
         .gallery h2 {
@@ -158,7 +178,7 @@
             overflow: hidden;
             margin-bottom: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
 
         .video-embed-container iframe {
@@ -176,7 +196,6 @@
         }
 
         .photo-item {
-            /* 請在此處替換你的活動照片 URL */
             height: 200px;
             background: #eee url('你的活動照片網址.jpg') no-repeat center center/cover;
             border-radius: 5px;
@@ -205,17 +224,20 @@
             margin-bottom: 30px;
         }
 
-        .schedule-table th, .schedule-table td {
-            border: 1px solid #ddd;
+        .schedule-table th,
+        .schedule-table td {
+            border: 1px solid var(--border-color);
             padding: 15px;
         }
 
         /* 底部導航 (Footer) */
         footer {
-            background-color: #333;
+            background-color: var(--primary-blue);
             color: white;
             padding: 50px 10%;
             text-align: center;
+            width: 100%;
+            position: relative;
         }
 
         .footer-logo {
@@ -231,22 +253,27 @@
         }
 
         /* 手機版適配 */
-      @media (max-width: 768px) {
-    .nav-links a {
-        margin-left: 10px; /* 縮小間距，讓 5 個標題能排進去 */
-        font-size: 0.85em;  /* 稍微縮小字體 */
-    }
-    .logo-text {
-        font-size: 1.1em;
-    }
-}
+        @media (max-width: 768px) {
+            .nav-links a {
+                margin-left: 10px;
+                font-size: 0.85em;
+            }
+            .logo-text {
+                font-size: 1.1em;
+            }
+            .hero-content h1 {
+                font-size: 2em;
+            }
+            .hero-content h2 {
+                font-size: 1.2em;
+            }
+        }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="logo-text">Smile Run Crew</div>
-    
     <div class="nav-links">
         <a href="#hero">首頁</a>
         <a href="你的教練碎念網址" target="_blank">教練碎念</a>
@@ -257,7 +284,7 @@
 <section id="hero" class="hero">
     <div class="hero-content">
         <h1>跑步，是為了更好的自己</h1>
-        <h2>Smile Run Crew | 毛毛 教練陪你跑過每一步。</h2>
+        <h2>毛毛教練陪你跑過每一步</h2>
         <a href="https://lin.ee/ovImcpc" class="cta-button">立即加入</a>
     </div>
 </section>
@@ -268,7 +295,8 @@
         <p>跑步不只是訓練，更是生活的一部分。</p>
     </div>
     <div class="coach-container">
-        <div class="coach-photo-area"></div> <div class="article-list">
+        <div class="coach-photo-area"></div>
+        <div class="article-list">
             <div class="article-item">
                 <a href="你的Notion文章連結">1. [跑鞋挑選指南] 如何找到最適合你的戰靴</a>
                 <p>毛毛 教練教你如何根據腳型和跑步習慣，挑選第一雙專業跑鞋。</p>
@@ -277,7 +305,7 @@
                 <a href="你的Notion文章連結">2. [跑姿解析] 教練教你如何跑得更輕鬆</a>
                 <p>正確的跑姿不僅能提升速度，更能有效減少膝蓋與足底的運動傷害。</p>
             </div>
-            </div>
+        </div>
     </div>
 </section>
 
@@ -285,18 +313,16 @@
     <div class="gallery-content">
         <h2>跟著 SRC 一起前進</h2>
         <p>毛毛教練，陪你找回跑步最純粹的快樂。</p>
-        
+
         <div class="main-video-container">
             <div class="video-embed-container">
-            <iframe 
-    width="100%" 
-    height="100%" 
-    src="https://www.youtube.com/embed/kZVqE7_F6mM" 
-    title="Smile Run Crew 影片" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    allowfullscreen>
-</iframe>
+                <iframe 
+                    src="https://www.youtube.com/embed/kZVqE7_F6mM" 
+                    title="Smile Run Crew 影片" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div>
@@ -304,47 +330,48 @@
 
 <section id="schedule" class="schedule">
     <h2>訓練課程時間</h2>
-   <table class="schedule-table">
-    <thead>
-        <tr>
-            <th>時間</th>
-            <th>地點</th>
-            <th>訓練內容</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>週一 19:30</td>
-            <td>土城綜合運動場</td>
-            <td>土城跑步班</td>
-        </tr>
-        <tr>
-            <td>週二 19:30</td>
-            <td>台北田徑場</td>
-            <td>北田跑步班</td>
-        </tr>
-        <tr>
-            <td>週三 19:30</td>
-            <td>三峽北大田徑場</td>
-            <td>三峽跑步班</td>
-        </tr>
-        <tr>
-            <td>週四 19:30</td>
-            <td>土城綜合運動場</td>
-            <td>土城跑步班</td>
-        </tr>
-       <tr>
-            <td>週五 19:30</td>
-            <td>板橋第一運動場</td>
-            <td>板橋跑步班</td>
-        </tr>
-       <tr>
-            <td>週六、日</td>
-            <td>不定期團練及賽事暖身</td>
-            <td>陪你一步步進步</td>
-    </tbody>
-</table>
-    <a href="https://reurl.cc/yOMamM" class="cta-button"點我報名</a>
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>時間</th>
+                <th>地點</th>
+                <th>訓練內容</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>週一 19:30</td>
+                <td>土城綜合運動場</td>
+                <td>土城跑步班</td>
+            </tr>
+            <tr>
+                <td>週二 19:30</td>
+                <td>台北田徑場</td>
+                <td>北田跑步班</td>
+            </tr>
+            <tr>
+                <td>週三 19:30</td>
+                <td>三峽北大田徑場</td>
+                <td>三峽跑步班</td>
+            </tr>
+            <tr>
+                <td>週四 19:30</td>
+                <td>土城綜合運動場</td>
+                <td>土城跑步班</td>
+            </tr>
+            <tr>
+                <td>週五 19:30</td>
+                <td>板橋第一運動場</td>
+                <td>板橋跑步班</td>
+            </tr>
+            <tr>
+                <td>週六、日</td>
+                <td>不定期團練及賽事暖身</td>
+                <td>陪你一步步進步</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="https://reurl.cc/yOMamM" class="cta-button">點我報名</a>
 </section>
 
 <footer>
@@ -356,6 +383,10 @@
     </div>
     <p>© 2026 Smile Run Crew 微笑跑團. </p>
 </footer>
+
+</body>
+</html>
+
 
 </body>
 </html>
