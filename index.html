@@ -231,11 +231,15 @@
         }
 
         /* 手機版適配 */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2em; }
-            .coach-container { flex-direction: column; }
-            .schedule-table { font-size: 0.8em; }
-        }
+      @media (max-width: 768px) {
+    .nav-links a {
+        margin-left: 10px; /* 縮小間距，讓 5 個標題能排進去 */
+        font-size: 0.85em;  /* 稍微縮小字體 */
+    }
+    .logo-text {
+        font-size: 1.1em;
+    }
+}
     </style>
 </head>
 <body>
